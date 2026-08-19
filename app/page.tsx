@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import {useState} from "react"
-import { LayoutDashboard, User, Settings, Settings2, TrendingUp, FileText, ChartColumn, Bell, ChevronDown, Search, ChevronLeft, ChevronRight, Grid, List, Filter, Plus, EllipsisVertical } from "lucide-react"
+import { LayoutDashboard, User, Settings, Settings2, TrendingUp, FileText, ChartColumn, Bell, ChevronDown, Search, ChevronLeft, ChevronRight, Grid, List, Filter, Plus, EllipsisVertical, Edit, Eye, Trash2 } from "lucide-react"
 import Link from "next/link"
+import Navbar from "./components/Navbar";
+
 const grievances = [
   {
     id: "GRV001",
@@ -97,39 +99,17 @@ const grievances = [
   },
 ];
 
-function Navbar() {
-  return (
-    <nav className="flex justify-between items-center bg-black text-white py-4 px-6">
-      <div className="py-2 px-3 ml-3.5 bg-white text-slate-800 rounded-md italic font-semibold">
-        Lasoye
-      </div>
-
-      <ul className="flex gap-12 text-sm font-semibold ">
-        <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Products</li>
-        <Link href={"/motionlessvibes"}>
-          <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Motionless Vibes</li>
-        </Link>
-        <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Our company</li>
-        <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Account</li>
-        <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Contact</li>
-      </ul>
-      <div className="space-x-4 mr-6">
-        <button className="bg-pink-400 font-medium py-2 px-3 cursor-pointer hover:bg-white hover:text-pink-400 transition-all duration-200">
-          Sign Up
-        </button>
-        <button className="bg-white font-medium text-black py-2 px-3 cursor-pointer hover:text-pink-400 transition-all duration-200">
-          Log In
-        </button>
-      </div>
-    </nav>
-  )
-}
-
 function Section() {
 
   const [renderType, setRenderType] = useState("grid")
   const [active, setActive] = useState("grid")
+  const [openModalId, setOpenModalId] = useState(null)
 
+  const Ayotemi = (id: any)=>{
+    setOpenModalId(
+      (currentId)=> currentId === id? null:id
+    )
+  }
   const handleRenderType = (type: any)=>{
     setRenderType(type)
     setActive(type)
@@ -311,12 +291,32 @@ w-4 top-1.75 right-3 text-slate-500"/>
         {renderType==="grid" && <div className="grid grid-cols-3 gap-5 mt-8 border border-black/10 p-4">
           {
             grievances.map((item) => (
-              <div key={item.id} className="border rounded-sm border-black/10 hover:shadow-lg transition-all duration-200">
+              <div key={item.id} className="relative border rounded-sm border-black/10 hover:shadow-lg transition-all duration-200">
+                {
+                openModalId ===item.id &&
+                <div className=" absolute bg-white right-4 top-8 z-90 flex flex-col w-40 px-4 py-4 shadow-sm rounded-md gap-2">
+                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                    <FileText className="inline-block mr-4 w-4"/>
+                    View Report
+                  </p>
+                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                    <Edit className="inline-block mr-4 w-4"/>
+                    Edit Report
+                  </p>
+                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                    <Eye className="inline-block mr-4 w-4"/>
+                    Thread
+                  </p>
+                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer text-red-600">
+                    <Trash2 className="inline-block mr-4 w-4"/>
+                    Delete Report
+                  </p>
+                </div>}
                 <div className="flex py-2 px-3 bg-black/10 rounded-sm">
                   <p className="truncate text-sm text-gray-900 ">
                     {item.id}-<span>{item.title}</span>
                   </p>
-                  <EllipsisVertical className="w-4 text-slate-500" />
+                  <EllipsisVertical className="w-4 text-slate-800 cursor-pointer" onClick={()=>Ayotemi(item.id)}/>
                 </div>
                 <div className="px-3 py-4 flex items-center justify-between border-b border-b-black/10">
                   <div className="flex flex-col gap-1 ">
@@ -430,10 +430,7 @@ w-4 top-1.75 right-3 text-slate-500"/>
             </div>
         ))}
         </div>}
-
-        
       </div>
-
     </section>
   )
 }
