@@ -2,9 +2,12 @@ import Link from "next/link"
 export default function Navbar() {
   return (
     <nav className="flex justify-between items-center bg-black text-white py-4 px-6">
-      <div className="py-2 px-3 ml-3.5 bg-white text-slate-800 rounded-md italic font-semibold">
-        Lasoye
-      </div>
+      <Link href="/">
+        <div className="py-2 px-3 ml-3.5 bg-white text-slate-800 rounded-md italic font-semibold">
+          Lasoye
+        </div>
+      </Link>
+      
 
       <ul className="flex gap-12 text-sm font-semibold ">
         <li className="hover:translate-y-0.5 transition-all duration-200 cursor-pointer">Products</li>

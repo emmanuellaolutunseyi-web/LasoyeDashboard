@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 function Contact(){
   return(
-    <div className=" h-150 inline-block">
+    <div className=" h-150 inline-block mb-20">
       <h1 className="flex justify-center text-2xl md:text-5xl font-semibold my-15">How would you like to contact Lasoye?</h1>
       <div className=" grid grid-cols-2 mx-40 gap-10 text-white">
         <div className="h-118 bg-gradient-to-br from-pink-400 via-pink-500 to-rose-500 px-7 text-white">

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import {useState} from "react"
+import { useState } from "react"
 import { LayoutDashboard, User, Settings, Settings2, TrendingUp, FileText, ChartColumn, Bell, ChevronDown, Search, ChevronLeft, ChevronRight, Grid, List, Filter, Plus, EllipsisVertical, Edit, Eye, Trash2 } from "lucide-react"
 import Link from "next/link"
 import Navbar from "./components/Navbar";
@@ -105,12 +105,12 @@ function Section() {
   const [active, setActive] = useState("grid")
   const [openModalId, setOpenModalId] = useState(null)
 
-  const Ayotemi = (id: any)=>{
+  const Ayotemi = (id: any) => {
     setOpenModalId(
-      (currentId)=> currentId === id? null:id
+      (currentId) => currentId === id ? null : id
     )
   }
-  const handleRenderType = (type: any)=>{
+  const handleRenderType = (type: any) => {
     setRenderType(type)
     setActive(type)
   };
@@ -160,8 +160,8 @@ function Section() {
                 Demo 2
               </p>
             </div>
-            <div className="mb-2.5 px-4 py-2 hover:bg-white/10 hover:text-white transition-all duration-200 rounded-md">
-              <p className="text-sm">
+            <div className="mb-2.5 px-4 py-2 bg-white/10 hover:text-white transition-all duration-200 rounded-md">
+              <p className="text-sm ">
                 <FileText className="inline-block w-5 mr-3" />
                 Case Management
               </p>
@@ -236,14 +236,14 @@ w-4 top-1.75 right-3 text-slate-500"/>
             1-9 of 32
           </p>
           <div className="flex ">
-            <ChevronLeft className="w-5 text-slate-400" />
+            <ChevronLeft className="w-5 text-slate-400"/>
             <ChevronRight className="w-5" />
           </div>
           <div className="flex  gap-1 border border-slate-600 rounded-sm   justify-center items-center ">
-            <div className={`px-2 rounded-r-sm cursor-pointer ${active ==="list" ?"bg-pink-200 text-pink-400":""}`} onClick={()=>handleRenderType("list")}>
+            <div className={`px-2  rounded-l-sm cursor-pointer ${active === "list" ? "bg-pink-200 text-pink-400" : ""}`} onClick={() => handleRenderType("list")}>
               <List className="w-4 " />
             </div>
-            <div className={`px-2 rounded-r-sm cursor-pointer ${active ==="grid" ? "bg-pink-200 text-pink-400":""}`} onClick={()=>handleRenderType("grid")}>
+            <div className={`px-2 rounded-r-sm cursor-pointer ${active === "grid" ? "bg-pink-200 text-pink-400" : ""}`} onClick={() => handleRenderType("grid")}>
               <Grid className="w-4" />
             </div>
           </div>
@@ -288,35 +288,35 @@ w-4 top-1.75 right-3 text-slate-500"/>
           </p>
         </div>
         {/*Grid*/}
-        {renderType==="grid" && <div className="grid grid-cols-3 gap-5 mt-8 border border-black/10 p-4">
+        {renderType === "grid" && <div className="grid grid-cols-3 gap-5 mt-8 border border-black/10 p-4">
           {
             grievances.map((item) => (
-              <div key={item.id} className="relative border rounded-sm border-black/10 hover:shadow-lg transition-all duration-200">
+              <div key={item.id} className="relative border rounded-md border-black/10 hover:shadow-lg transition-all duration-200">
                 {
-                openModalId ===item.id &&
-                <div className=" absolute bg-white right-4 top-8 z-90 flex flex-col w-40 px-4 py-4 shadow-sm rounded-md gap-2">
-                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
-                    <FileText className="inline-block mr-4 w-4"/>
-                    View Report
-                  </p>
-                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
-                    <Edit className="inline-block mr-4 w-4"/>
-                    Edit Report
-                  </p>
-                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
-                    <Eye className="inline-block mr-4 w-4"/>
-                    Thread
-                  </p>
-                  <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer text-red-600">
-                    <Trash2 className="inline-block mr-4 w-4"/>
-                    Delete Report
-                  </p>
-                </div>}
-                <div className="flex py-2 px-3 bg-black/10 rounded-sm">
+                  openModalId === item.id &&
+                  <div className=" absolute bg-white right-4 top-8 z-90 flex flex-col w-40 px-4 py-4 shadow-sm rounded-md gap-2">
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <FileText className="inline-block mr-4 w-4" />
+                      View Report
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <Edit className="inline-block mr-4 w-4" />
+                      Edit Report
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <Eye className="inline-block mr-4 w-4" />
+                      Thread
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer text-red-600">
+                      <Trash2 className="inline-block mr-4 w-4" />
+                      Delete Report
+                    </p>
+                  </div>}
+                <div className="flex py-2 px-3 bg-black/10 rounded-t-sm">
                   <p className="truncate text-sm text-gray-900 ">
                     {item.id}-<span>{item.title}</span>
                   </p>
-                  <EllipsisVertical className="w-4 text-slate-800 cursor-pointer" onClick={()=>Ayotemi(item.id)}/>
+                  <EllipsisVertical className="w-4 text-slate-800 cursor-pointer" onClick={() => Ayotemi(item.id)} />
                 </div>
                 <div className="px-3 py-4 flex items-center justify-between border-b border-b-black/10">
                   <div className="flex flex-col gap-1 ">
@@ -373,7 +373,7 @@ w-4 top-1.75 right-3 text-slate-500"/>
 
         </div>}
         {/* List */}
-        {renderType==="list" && <div className="mt-8 hidden lg:flex lg:flex-col ">
+        {renderType === "list" && <div className="mt-8 hidden lg:flex lg:flex-col ">
           <div className="grid grid-cols-8 bg-black/10 py-4 rounded-t-sm gap-5 px-4 font-semibold text-sm text-slate-700">
             <h3>
               ID
@@ -401,10 +401,31 @@ w-4 top-1.75 right-3 text-slate-500"/>
             </h3>
 
           </div>
-          {grievances.map((item)=>(
-            <div key={item.id} className="grid grid-cols-8 text-sm px-4 border border-slate-200 py-3 gap-4 w-full hover:bg-black/5 items-center">
+          {grievances.map((item) => (
+            <div key={item.id} className="grid grid-cols-8 text-sm px-4 border border-slate-200 py-3 gap-4 w-full hover:bg-black/5 items-center relative">
+              {
+                openModalId === item.id &&
+                  <div className=" absolute bg-white right-25 top-9 z-90 flex flex-col w-40 px-4 py-4 shadow-sm rounded-md gap-2">
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <FileText className="inline-block mr-4 w-4" />
+                      View Report
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <Edit className="inline-block mr-4 w-4" />
+                      Edit Report
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer">
+                      <Eye className="inline-block mr-4 w-4" />
+                      Thread
+                    </p>
+                    <p className="text-sm hover:bg-slate-100 p-1 rounded-sm cursor-pointer text-red-600">
+                      <Trash2 className="inline-block mr-4 w-4" />
+                      Delete Report
+                    </p>
+                  </div>
+                }
               <h3 className="text-slate-900">
-              {item.id}
+                {item.id}
               </h3>
               <h3 className="text-slate-900">
                 {item.dateSubmitted}
@@ -419,16 +440,16 @@ w-4 top-1.75 right-3 text-slate-500"/>
                 <User className="inline-block w-4 mr-1" />
                 {item.complainant}
               </h3>
-              <h3 className="ml-10">   
+              <h3 className="ml-10">
                 {item.urgency}
               </h3>
               <h3 className={`rounded-xl w-25 ${item.status === "Unresolved" ? "bg-red-200 text-red-800" : item.status === "In Progress" ? "text-amber-800 bg-amber-200" : "bg-emerald-200 text-emerald-800"} px-1 text-xs flex items-center justify-center`}>
                 {item.status} <ChevronDown className="w-2.5 inline-block" />
               </h3>
-              <EllipsisVertical className="w-4 text-xs text-slate-600 ml-5"/>
-              
+              <EllipsisVertical className="w-4 text-xs text-slate-800 ml-5" onClick={() => Ayotemi(item.id)}/>
+
             </div>
-        ))}
+          ))}
         </div>}
       </div>
     </section>
